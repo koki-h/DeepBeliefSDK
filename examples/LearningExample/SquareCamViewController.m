@@ -388,7 +388,7 @@ bail:
 {
   switch (predictionState) {
     case eWaiting: {
-      [sender setTitle: @"Learning" forState:UIControlStateNormal];
+      [sender setTitle: @"学習中" forState:UIControlStateNormal];
       [self triggerNextState];
     } break;
 
@@ -397,7 +397,7 @@ bail:
     } break;
 
     case eNegativeWaiting: {
-      [sender setTitle: @"Learning" forState:UIControlStateNormal];
+      [sender setTitle: @"学習中" forState:UIControlStateNormal];
       [self triggerNextState];
     } break;
 
@@ -1093,29 +1093,31 @@ bail:
 
   switch (predictionState) {
     case eWaiting: {
-      [self setInfo: @"When you're ready to teach me, press the button at the bottom and point your phone at the thing you want to recognize."];
+      [self setInfo: @"画面の下の「学習を開始する」をタップしてから認識させたいものにカメラを向けて下さい。"];
+      [self.mainButton setTitle: @"学習を開始する" forState:UIControlStateNormal];
       [self setProgress: 0.0f];
     } break;
 
     case ePositiveLearning: {
-      [self setInfo: @"Move around the thing you want to recognize, keeping the phone pointed at it, to capture different angles."];
+      [self setInfo: @"カメラを動かして認識させたいものを様々な角度から撮影して下さい。"];
+      [self.mainButton setTitle: @"学習中" forState:UIControlStateNormal];
       [self setProgress: (positivePredictionsCount / (float)kPositivePredictionTotal)];
     } break;
 
     case eNegativeWaiting: {
-      [self setInfo: @"Now I need to see examples of things that aren't the object you're looking for. Press the button when you're ready."];
+      [self setInfo: @"次に認識したくない画像のサンプルを撮影します。画面の下の「学習を続ける」をタップして下さい。"];
       [self setProgress: 0.0f];
-      [self.mainButton setTitle: @"Continue Learning" forState:UIControlStateNormal];
+      [self.mainButton setTitle: @"学習を続ける" forState:UIControlStateNormal];
     } break;
 
     case eNegativeLearning: {
-      [self setInfo: @"Now move around the room pointing your phone at lots of things that are not the object you want to recognize."];
+      [self setInfo: @"認識させたいものが入らないように室内の様々なものを撮影して下さい。"];
       [self setProgress: (negativePredictionsCount / (float)kNegativePredictionTotal)];
     } break;
 
     case ePredicting: {
-      [self setInfo: @"You've taught the neural network to see! Now you should be able to scan around using the camera and detect the object's presence."];
-      [self.mainButton setTitle: @"Learn Again" forState:UIControlStateNormal];
+      [self setInfo: @"学習が完了しました！最初に認識させたものがカメラに写っているか、判定させることができます。"];
+      [self.mainButton setTitle: @"学習前に戻る" forState:UIControlStateNormal];
     } break;
 
     default: {
