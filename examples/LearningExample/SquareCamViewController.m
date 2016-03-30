@@ -1179,7 +1179,7 @@ bail:
       self.lastFrameTime = [NSDate date];
       const float pingProgress = (predictionValue * frameDuration);
       timeToNextPing -= pingProgress;
-      if (timeToNextPing < 0.0f) {
+      if (timeToNextPing < 0.0f && predictionValue > 0.8) {
         AudioServicesPlaySystemSound(self.soundFileObject);
         timeToNextPing = kMinSecondsBetweenPings;
       }
