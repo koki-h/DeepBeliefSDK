@@ -1055,7 +1055,7 @@ bail:
   const CGRect progressForegroundBounds = CGRectMake(marginSizeX, marginTopY, 0.0f, progressHeight);
 
   self.progressForeground = [CATextLayer layer];
-  [self.progressForeground setBackgroundColor: [UIColor blueColor].CGColor];
+  [self.progressForeground setBackgroundColor: [UIColor yellowColor].CGColor];
   [self.progressForeground setOpacity:0.75f];
   [self.progressForeground setFrame: progressForegroundBounds];
   self.progressForeground.cornerRadius = 5.0f;
